@@ -2,4 +2,10 @@
 
 ## Desenolvedores
 
-- Igor Emanuel Oliveira Rêgo
+- Igor Emanuel Oliveira Rêgo :
+  Atualizar o .gitignore
+  Escolher Líder
+  Criar Branch Igor
+  Atualizar o Readme
+
+  
