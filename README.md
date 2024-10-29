@@ -2,4 +2,4 @@
 
 ## Desenolvedores
 
-- Seu nome completo aqui;
+- Nathan Dalbert Lopes os Santos(Atualizar o .gitIgnore);
