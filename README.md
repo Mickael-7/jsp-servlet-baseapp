@@ -1,7 +1,6 @@
 # Escreva aqui o tema da equipe, por exemplo (App Universo, App Animais, App Comidas)
 
 ## Desenolvedores
-
 - Igor Emanuel Oliveira Rêgo :
   Atualizar o .gitignore,
   Escolher Líder,
@@ -9,3 +8,8 @@
   Atualizar o Readme
 
   
+- Nathan Dalbert Lopes os Santos:
+  Atualizar o .gitignore,
+  Escolher Líder,
+  Criar Branch nathan,
+  Atualizar o Readme;
