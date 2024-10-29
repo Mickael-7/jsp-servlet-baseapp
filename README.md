@@ -2,4 +2,8 @@
 
 ## Desenolvedores
 
-- Nathan Dalbert Lopes os Santos(Atualizar o .gitIgnore);
+- Nathan Dalbert Lopes os Santos:
+  Atualizar o .gitignore,
+  Escolher Líder,
+  Criar Branch nathan,
+  Atualizar o Readme;
