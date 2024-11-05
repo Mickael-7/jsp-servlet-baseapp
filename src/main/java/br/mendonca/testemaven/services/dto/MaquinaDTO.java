@@ -3,6 +3,7 @@ package br.mendonca.testemaven.services.dto;
 import br.mendonca.testemaven.model.entities.Maquina;
 
 public class MaquinaDTO {
+    private String uuid;
 
     private String nome;
     private float pesoTotal;
@@ -11,6 +12,10 @@ public class MaquinaDTO {
 
     public String getNome() {
         return nome;
+    }
+
+    public String getUuid() {
+        return uuid;
     }
 
     public void setNome(String nome) {
