@@ -17,7 +17,7 @@ public class ExercicioService {
         exercicio.setQuantidadeSeries(quantidadeSeries);
         exercicio.setDisponivelNaAcademia(disponivel);
 
-        dao.register(exercicio); // Supondo que você tenha um método register no DAO
+        dao.register(exercicio);
     }
 
     public List<ExercicioDTO> listAllExercicios() throws ClassNotFoundException, SQLException {
@@ -32,5 +32,4 @@ public class ExercicioService {
 
         return resp;
     }
-
 }

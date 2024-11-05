@@ -14,28 +14,28 @@
       <form action="/registerexercicio" method="post">
         <h1 class="h3 mb-3 fw-normal">Cadastrar novo exercício:</h1>
 
-        <!-- Campo para o nome do exercício -->
+
         <div class="form-floating mb-3">
           <input type="text" name="nome" class="form-control" id="floatingNome" placeholder="Nome do exercício" required />
           <label for="floatingNome">Nome</label>
         </div>
 
-        <!-- Campo para quantidade de séries -->
+
         <div class="form-floating mb-3">
           <input type="number" name="quantidadeSeries" class="form-control" id="floatingSeries" placeholder="Quantidade de séries" required min="1" />
           <label for="floatingSeries">Quantidade de Séries</label>
         </div>
 
-        <!-- Checkbox para disponibilidade do exercício -->
+
         <div class="form-check mb-3">
           <input class="form-check-input" type="checkbox" name="disponivel" id="flexCheckDisponivel" />
           <label class="form-check-label" for="flexCheckDisponivel">Disponível na academia?</label>
         </div>
 
-        <!-- Botão de submissão -->
+
         <button class="btn btn-primary w-100 py-2 mt-2" type="submit">Cadastrar Exercício</button>
 
-        <!-- Exibir mensagem de sucesso ou erro, se houver -->
+
         <%
           String mensagemSucesso = (String) request.getAttribute("mensagemSucesso");
           String mensagemErro = (String) request.getAttribute("mensagemErro");
