@@ -3,10 +3,18 @@ link do deploy: https://jsp-servlet-baseapp-vx1l.onrender.com
 ## Desenolvedores
 
 - Nathan Dalbert Lopes os Santos:
-  Atualizar o .gitignore,
+  # 1
+- Atualizar o .gitignore,
   Escolher Líder,
   Criar Branch nathan,
   Atualizar o Readme;
+# 2
+- Criar entidade professor,
+- Preencher about,
+- Preencher Readme,
+- O usuario consegue
+- O usuario consegue instalar novas tabelas no bd pela entidade install
+- 
 - Mickael de Albuquerque Silva: fazer deploy da aplicacao no render.com,
   instalar db na maquina do cliente,
   atualizar pagina about,atualizar README,
