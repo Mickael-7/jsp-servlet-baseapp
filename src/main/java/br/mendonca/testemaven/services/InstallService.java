@@ -30,7 +30,14 @@ public class InstallService {
 					+ "    uuid UUID DEFAULT gen_random_uuid() PRIMARY KEY,"
 					+ "    name VARCHAR(255) NOT NULL,"
 					+ "    email VARCHAR(255) NOT NULL,"
-					+ "    password VARCHAR(255) NOT NULL)");
+					+ "    password VARCHAR(255) NOT NULL)"
+				);
+		statement("CREATE TABLE professor("
+						+ "    uuid UUID DEFAULT gen_random_uuid() PRIMARY KEY,"
+						+ "    name VARCHAR(255) NOT NULL,"
+						+ "    idade INT NOT NULL,"
+						+ "    estaPresente BOOLEAN NOT NULL)"
+				);
 	}
 	public void createExercicioTable() throws ClassNotFoundException, SQLException {
 		statement("CREATE TABLE exercicio ("
