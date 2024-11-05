@@ -11,8 +11,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/end/point")
-public class ModeloServlet extends HttpServlet {
+@WebServlet("/registerexercicio")
+public class ExercicioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -56,13 +56,7 @@ public class ModeloServlet extends HttpServlet {
 			ExercicioService service = new ExercicioService();
 			service.register(nome, quantidadeSeries, disponivel);
 
-			page.println("<html lang='pt-br'><head><title>Sucesso</title></head><body>");
-			page.println("<h1>Exercício registrado com sucesso!</h1>");
-			page.println("<p>Nome: " + nome + "</p>");
-			page.println("<p>Quantidade de Séries: " + quantidadeSeries + "</p>");
-			page.println("<p>Disponível: " + (disponivel ? "Sim" : "Não") + "</p>");
-			page.println("</body></html>");
-			page.close();
+			response.sendRedirect("/dashboard/dashboard.jsp");
 
 		} catch (NumberFormatException e) {
 			page.println("<html lang='pt-br'><head><title>Error</title></head><body>");
