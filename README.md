@@ -1,7 +1,5 @@
 # Escreva aqui o tema da equipe, por exemplo (App Universo, App Animais, App Comidas)
 
-link do deploy: https://jsp-servlet-baseapp-vx1l.onrender.com
-
 ## Desenolvedores
 
 - Seu nome completo aqui;
@@ -12,3 +10,5 @@ link do deploy: https://jsp-servlet-baseapp-vx1l.onrender.com
     Escolher Líder,
     Criar Branch Igor,
     Atualizar o Readme
+
+  
