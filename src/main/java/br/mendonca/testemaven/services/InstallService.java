@@ -32,4 +32,11 @@ public class InstallService {
 					+ "    email VARCHAR(255) NOT NULL,"
 					+ "    password VARCHAR(255) NOT NULL)");
 	}
+	public void createExercicioTable() throws ClassNotFoundException, SQLException {
+		statement("CREATE TABLE exercicio ("
+				+ "    uuid UUID DEFAULT gen_random_uuid() PRIMARY KEY,"
+				+ "    nome VARCHAR(255) NOT NULL,"
+				+ "    quantidade_series INT NOT NULL,"
+				+ "    disponivel_na_academia BOOLEAN NOT NULL)");
+	}
 }
