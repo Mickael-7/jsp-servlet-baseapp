@@ -94,4 +94,33 @@ public class ProfessorDAO {
 
         return lista;
     }
+    public List<Professor> listProfessoresPaginados(int pagina, int tamanhoPagina) throws ClassNotFoundException, SQLException {
+        List<Professor> lista = new ArrayList<>();
+        Connection conn = ConnectionPostgres.getConexao();
+        conn.setAutoCommit(true);
+
+        String sql = "SELECT * FROM professor ORDER BY name LIMIT ? OFFSET ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+
+
+        ps.setInt(1, tamanhoPagina); // tamanho da página (quantidade de resultados por página)
+        ps.setInt(2, pagina * tamanhoPagina); // offset (a partir de qual registro começar)
+
+
+        ResultSet rs = ps.executeQuery();
+
+
+        while (rs.next()) {
+            Professor professor = new Professor();
+            professor.setName(rs.getString("name"));
+            professor.setIdade(rs.getInt("idade"));
+            professor.setEstaPresente(rs.getBoolean("estaPresente"));
+            lista.add(professor);
+        }
+
+        rs.close();
+        ps.close();
+
+        return lista;
+    }
 }
