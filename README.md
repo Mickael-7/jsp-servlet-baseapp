@@ -17,7 +17,8 @@ atraves de um item de menu, preencher readme ,preencher about
   criar branchs (development,mickael);
   #2 instalar nova tabela execicio pelo /install, construir sistema de registrar  de forma permanente
   um exercicio com sua propriedade atraves de um item de menu ,preencher readme ,preencher about 
-  #3 listar todos os exercicos atraves de um item menu, o usuario consegue exibir detalhes de um exercicio apartir de um item de menu
+  #3 listar todos os exercicos atraves de um item menu, o usuario consegue exibir detalhes de um exercicio apartir de um item de menu,o usuário instala as novas tabelas do banco com 7 indivíduos aleatórios pelo endpoint /install,
+  Os usuários visualizam todos os indivíduos listados com paginação de 3 indivíduos.
 - Igor Emanuel Oliveira Rêgo :
 
   #1 Atualizar o .gitignore,
