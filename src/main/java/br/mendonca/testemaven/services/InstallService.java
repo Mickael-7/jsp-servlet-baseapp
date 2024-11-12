@@ -88,7 +88,11 @@ public class InstallService {
 			boolean estaPresente = random.nextBoolean(); // Aleatório entre true ou false
 
 			String sql = String.format("INSERT INTO professor (name, idade, estaPresente) VALUES ('%s', %d, %b)",
-					nome, idade, estaPresente);}
+					nome, idade, estaPresente);
+
+			statement(sql);
+		}
+
 	}
 
 	public void populateExercicioTable() throws ClassNotFoundException, SQLException {

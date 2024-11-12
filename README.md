@@ -4,11 +4,13 @@ App Academia
 link do deploy: https://jsp-servlet-baseapp-vx1l.onrender.com
 ## Desenolvedores
 
--Nathan Dalbert Lopes os Santos: #1 Atualizar o .gitignore, Escolher Líder, Criar Branch nathan, 
-Atualizar o Readme;
-#2 instalar nova tabela de Professor pelo /install, construir sistema de registrar de forma
-permanente um professor com sua propriedade atraves de um item de menu, construir sistema de visualização das maquina cadastradas 
-atraves de um item de menu, preencher readme ,preencher about
+- Nathan Dalbert Lopes os Santos: 
+- #1 Atualizar o .gitignore, Escolher Líder, Criar Branch nathan,Atualizar o Readme;
+  #2 instalar nova tabela de Professor pelo /install, preencher readme ,preencher about;#;#3construir sistema de registrar de forma
+  permanente um professor com sua propriedade atraves de um item de menu, construir sistema de visualização dos professores cadastrados
+  atraves de um item de menu,o usuário instala as novas tabelas do banco com 7 indivíduos aleatórios pelo endpoint /install,
+  Os usuários visualizam todos os indivíduos listados com paginação de 3 indivíduos.
+
 - 
 - Mickael de Albuquerque Silva: fazer deploy da aplicacao no render.com,
   #1 instalar db na maquina do cliente,
