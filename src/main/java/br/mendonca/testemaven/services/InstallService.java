@@ -78,6 +78,7 @@ public class InstallService {
 
 	}
 
+
 	public void populateProfessorTable() throws ClassNotFoundException, SQLException {
 		String[] nomes = {"Carlos", "Ana", "João", "Maria", "Lucas", "Fernanda", "Paulo"};
 		Random random = new Random();
@@ -87,7 +88,20 @@ public class InstallService {
 			boolean estaPresente = random.nextBoolean(); // Aleatório entre true ou false
 
 			String sql = String.format("INSERT INTO professor (name, idade, estaPresente) VALUES ('%s', %d, %b)",
-					nome, idade, estaPresente);
+					nome, idade, estaPresente);}
+	}
+
+	public void populateExercicioTable() throws ClassNotFoundException, SQLException {
+		String[] exercicios = {"Supino", "Agachamento", "Remada", "Rosca Direta", "Leg Press", "Desenvolvimento", "Elevação Lateral"};
+		Random random = new Random();
+
+		for (String nome : exercicios) {
+			int quantidadeSeries = random.nextInt(5) + 1;
+			boolean disponivelNaAcademia = random.nextBoolean();
+
+			String sql = String.format("INSERT INTO exercicio (nome, quantidade_series, disponivel_na_academia) VALUES ('%s', %d, %b)",
+					nome, quantidadeSeries, disponivelNaAcademia);
+
 
 			statement(sql);
 		}

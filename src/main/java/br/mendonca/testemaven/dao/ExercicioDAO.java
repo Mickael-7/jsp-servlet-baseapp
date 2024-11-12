@@ -48,6 +48,34 @@ public class ExercicioDAO {
         return lista;
     }
 
+    public List<Exercicio> listExerciciosPaginados(int pagina, int tamanhoPagina) throws ClassNotFoundException, SQLException {
+        List<Exercicio> lista = new ArrayList<>();
+
+        Connection conn = ConnectionPostgres.getConexao();
+        conn.setAutoCommit(true);
+
+        String sql = "SELECT * FROM exercicio ORDER BY nome LIMIT ? OFFSET ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, tamanhoPagina);
+        ps.setInt(2, pagina * tamanhoPagina);
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Exercicio exercicio = new Exercicio();
+            exercicio.setUuid(rs.getString("uuid"));
+            exercicio.setNome(rs.getString("nome"));
+            exercicio.setQuantidadeSeries(rs.getInt("quantidade_series"));
+            exercicio.setDisponivelNaAcademia(rs.getBoolean("disponivel_na_academia"));
+            lista.add(exercicio);
+        }
+
+        rs.close();
+        ps.close();
+
+        return lista;
+    }
+
+
     public Exercicio searchByName(String nome) throws ClassNotFoundException, SQLException {
         Exercicio exercicio = null;
 
