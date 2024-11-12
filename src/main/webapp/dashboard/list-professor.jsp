@@ -6,7 +6,9 @@
 <%
   if (session.getAttribute("user") != null) {
     ProfessorService professorService = new ProfessorService();
-    List<ProfessorDTO> professores = professorService.listAllProfessors();
+    int pagina = request.getParameter("pagina") != null ? Integer.parseInt(request.getParameter("pagina")) : 0;
+    int tamanhoPagina = 3; // Tamanho da página de itens exibidos
+    List<ProfessorDTO> professores = professorService.listProfessoresPaginados(pagina, tamanhoPagina);
 %>
 
 <!doctype html>
@@ -30,10 +32,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-           <li class="nav-item"><a class="nav-link" href="/dashboard/dashboard.jsp">Home</a></li>
-                              <li class="nav-item"><a class="nav-link" href="/dashboard/users">Users</a></li>
-                              <li class="nav-item"><a class="nav-link" href="/dashboard/about.jsp">About</a></li>
-
+          <li class="nav-item"><a class="nav-link" href="/dashboard/dashboard.jsp">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/dashboard/users">Users</a></li>
+          <li class="nav-item"><a class="nav-link" href="/dashboard/about.jsp">About</a></li>
           <li class="nav-item"><a class="nav-link" href="/dashboard/list-professor.jsp">Registrar professor</a></li>
         </ul>
         <span class="navbar-text">
@@ -100,11 +101,25 @@
         <% } %>
       </ul>
     </div>
+
+    <!-- Controles de Paginação -->
+    <nav aria-label="Paginação de Professores" class="mt-3">
+      <ul class="pagination justify-content-center">
+        <% if (pagina > 0) { %>
+          <li class="page-item">
+            <a class="page-link" href="list-professor.jsp?pagina=<%= pagina - 1 %>">Anterior</a>
+          </li>
+        <% } %>
+        <li class="page-item">
+          <a class="page-link" href="list-professor.jsp?pagina=<%= pagina + 1 %>">Próxima</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
 
