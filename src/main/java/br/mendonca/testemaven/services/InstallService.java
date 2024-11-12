@@ -24,6 +24,9 @@ public class InstallService {
 	public void deleteUserTable() throws ClassNotFoundException, SQLException {
 		statement("DROP TABLE IF EXISTS users");
 	}
+	public void deleteExercicioTable() throws ClassNotFoundException, SQLException {
+		statement("DROP TABLE IF EXISTS exercicio");
+	}
 	
 	public void createUserTable() throws ClassNotFoundException, SQLException {
 		statement("CREATE TABLE users ("
