@@ -39,7 +39,6 @@ if (session.getAttribute("user") != null) {
 						<li class="nav-item"><a class="nav-link" href="/dashboard/users">Users</a></li>
 						<li class="nav-item"><a class="nav-link" href="/dashboard/about.jsp">About</a></li>
 						<li class="nav-item"><a class="nav-link" href="/dashboard/register-exercicio.jsp">Registrar Exercicio</a></li>
-						<li class="nav-item"><a class="nav-link" href="/dashboard/list-exercicio.jsp">Listar Exercicios</a></li>
 					</ul>
 					<span class="navbar-text">
 						<a class="btn btn-success" href="/auth/logoff">Logoff</a>
