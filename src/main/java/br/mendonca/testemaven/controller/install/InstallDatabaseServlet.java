@@ -35,16 +35,15 @@ public class InstallDatabaseServlet extends HttpServlet {
 			// Criação e exclusão de outras tabelas
 			service.deleteExercicioTable();
 			msg += "<h2>Delete table Exercicio sucessful!</h2>\n";
-
 			service.createExercicioTable();
 			msg += "<h2>Create table exercicio successful!</h2>\n";
+			service.populateExercicioTable();
+			msg += "<h2>Inserted 7 random exercises successfully!</h2>\n";
+
 			service.deleteMaquinaTable();
 			msg += "<h2>Delete table machine successful!</h2>\n";
 			service.createMaquinaTable();
 			msg += "<h2>Create table machine successful!</h2>\n";
-
-			// Imprime a mensagem de sucesso
-			msg += "<h2>Create table exercicio sucessful!</h2>\n";
 
 			page.println("<html lang='pt-br'><head><title>Teste</title></head><body>");
 			page.println(msg);
