@@ -3,6 +3,7 @@ package br.mendonca.testemaven.services;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 
 import br.mendonca.testemaven.dao.ConnectionPostgres;
 
@@ -24,9 +25,11 @@ public class InstallService {
 	public void deleteUserTable() throws ClassNotFoundException, SQLException {
 		statement("DROP TABLE IF EXISTS users");
 	}
+
 	public void deleteExercicioTable() throws ClassNotFoundException, SQLException {
 		statement("DROP TABLE IF EXISTS exercicio");
 	}
+
 
 
 	public void createUserTable() throws ClassNotFoundException, SQLException {
@@ -37,13 +40,20 @@ public class InstallService {
 				+ "    password VARCHAR(255) NOT NULL)"
 		);
 
-		// Criação da tabela professor
-		statement("CREATE TABLE professor("
+
+	}
+	public void deleteProfessorTable() throws ClassNotFoundException, SQLException {
+		statement("DROP TABLE IF EXISTS professor");
+	}
+
+
+	public void createProfessorTable() throws ClassNotFoundException, SQLException {
+		statement("CREATE TABLE professor ("
 				+ "    uuid UUID DEFAULT gen_random_uuid() PRIMARY KEY,"
 				+ "    name VARCHAR(255) NOT NULL,"
-				+ "    idade INT NOT NULL,"
-				+ "    estaPresente BOOLEAN NOT NULL)"
-		);
+				+ "    idade INTEGER NOT NULL,"
+				+ "    estaPresente BOOLEAN NOT NULL"
+				+ ")");
 	}
 	public void createExercicioTable() throws ClassNotFoundException, SQLException {
 		statement("CREATE TABLE exercicio ("
@@ -65,5 +75,35 @@ public class InstallService {
 
 	public void deleteMaquinaTable() throws ClassNotFoundException, SQLException {
 		statement("DROP TABLE IF EXISTS maquinas");
+
+	}
+
+
+	public void populateProfessorTable() throws ClassNotFoundException, SQLException {
+		String[] nomes = {"Carlos", "Ana", "João", "Maria", "Lucas", "Fernanda", "Paulo"};
+		Random random = new Random();
+
+		for (String nome : nomes) {
+			int idade = random.nextInt(40) + 25; // Idade aleatória entre 25 e 64 anos
+			boolean estaPresente = random.nextBoolean(); // Aleatório entre true ou false
+
+			String sql = String.format("INSERT INTO professor (name, idade, estaPresente) VALUES ('%s', %d, %b)",
+					nome, idade, estaPresente);}
+	}
+
+	public void populateExercicioTable() throws ClassNotFoundException, SQLException {
+		String[] exercicios = {"Supino", "Agachamento", "Remada", "Rosca Direta", "Leg Press", "Desenvolvimento", "Elevação Lateral"};
+		Random random = new Random();
+
+		for (String nome : exercicios) {
+			int quantidadeSeries = random.nextInt(5) + 1;
+			boolean disponivelNaAcademia = random.nextBoolean();
+
+			String sql = String.format("INSERT INTO exercicio (nome, quantidade_series, disponivel_na_academia) VALUES ('%s', %d, %b)",
+					nome, quantidadeSeries, disponivelNaAcademia);
+
+
+			statement(sql);
+		}
 	}
 }

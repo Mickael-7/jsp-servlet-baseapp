@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/professor/register")
+@WebServlet("/dashboard/register")
 public class ProfessorServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -40,22 +40,14 @@ public class ProfessorServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter page = response.getWriter();
         try {
-            String uuid = request.getParameter("uuid");
-            String name = request.getParameter("name");
+            String name = request.getParameter("nome");
             int idade = Integer.parseInt(request.getParameter("idade"));
             boolean estaPresente = request.getParameter("estaPresente") != null;
 
             ProfessorService service = new ProfessorService();
-            service.register(uuid, name, idade, estaPresente);
+            service.register( name, idade, estaPresente);
+            response.sendRedirect("/dashboard/list-professor.jsp");
 
-            page.println("<html lang='pt-br'><head><title>Sucesso</title></head><body>");
-            page.println("<h1>Professor registrado com sucesso!</h1>");
-            page.println("<p>UUID: " + uuid + "</p>");
-            page.println("<p>Nome: " + name + "</p>");
-            page.println("<p>Idade: " + idade + "</p>");
-            page.println("<p>Presente: " + (estaPresente ? "Sim" : "Não") + "</p>");
-            page.println("</body></html>");
-            page.close();
         } catch (NumberFormatException e) {
             page.println("<html lang='pt-br'><head><title>Error</title></head><body>");
             page.println("<h1>Erro: Idade deve ser um número.</h1>");
