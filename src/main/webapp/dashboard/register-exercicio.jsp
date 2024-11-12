@@ -6,7 +6,9 @@
 <%
   if (session.getAttribute("user") != null) {
     ExercicioService exercicioService = new ExercicioService();
-    List<ExercicioDTO> exercicios = exercicioService.listAllExercicios();
+    int pagina = request.getParameter("pagina") != null ? Integer.parseInt(request.getParameter("pagina")) : 0;
+    int tamanhoPagina = 3;
+    List<ExercicioDTO> exercicios = exercicioService.listExerciciosPaginados(pagina, tamanhoPagina);
 %>
 
 <!doctype html>
@@ -79,21 +81,36 @@
     <% } %>
   </form>
 
-  <!-- Lista de Exercícios Cadastrados -->
-  <div class="mt-5">
-    <h2>Exercícios Cadastrados</h2>
-    <ul class="list-group">
-      <% for (ExercicioDTO exercicio : exercicios) { %>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <div>
-          <strong>Nome:</strong> <%= exercicio.getNome() %> |
-          <strong>Quantidade de Séries:</strong> <%= exercicio.getQuantidadeSeries() %> |
-          <strong>Disponível:</strong> <%= exercicio.isDisponivelNaAcademia() ? "Sim" : "Não" %>
-        </div>
-      </li>
+<!-- Lista de Exercícios Cadastrados -->
+<div class="mt-5">
+  <h2>Exercícios Cadastrados</h2>
+  <ul class="list-group">
+    <% for (ExercicioDTO exercicio : exercicios) { %>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        <strong>Nome:</strong> <%= exercicio.getNome() %> |
+        <strong>Quantidade de Séries:</strong> <%= exercicio.getQuantidadeSeries() %> |
+        <strong>Disponível:</strong> <%= exercicio.isDisponivelNaAcademia() ? "Sim" : "Não" %>
+      </div>
+    </li>
+    <% } %>
+  </ul>
+
+  <!-- Controles de Paginação -->
+  <nav aria-label="Paginação de Exercícios" class="mt-3">
+    <ul class="pagination justify-content-center">
+      <% if (pagina > 0) { %>
+        <li class="page-item">
+          <a class="page-link" href="register-exercicio.jsp?pagina=<%= pagina - 1 %>">Anterior</a>
+        </li>
       <% } %>
+      <li class="page-item">
+        <a class="page-link" href="register-exercicio.jsp?pagina=<%= pagina + 1 %>">Próxima</a>
+      </li>
     </ul>
-  </div>
+  </nav>
+</div>
+
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN6jIeHz" crossorigin="anonymous"></script>
