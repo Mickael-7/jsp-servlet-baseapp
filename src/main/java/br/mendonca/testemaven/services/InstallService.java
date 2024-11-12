@@ -24,6 +24,10 @@ public class InstallService {
 	public void deleteUserTable() throws ClassNotFoundException, SQLException {
 		statement("DROP TABLE IF EXISTS users");
 	}
+	public void deleteExercicioTable() throws ClassNotFoundException, SQLException {
+		statement("DROP TABLE IF EXISTS exercicio");
+	}
+
 
 	public void createUserTable() throws ClassNotFoundException, SQLException {
 		statement("CREATE TABLE users ("
@@ -41,7 +45,6 @@ public class InstallService {
 				+ "    estaPresente BOOLEAN NOT NULL)"
 		);
 	}
-
 	public void createExercicioTable() throws ClassNotFoundException, SQLException {
 		statement("CREATE TABLE exercicio ("
 				+ "    uuid UUID DEFAULT gen_random_uuid() PRIMARY KEY,"

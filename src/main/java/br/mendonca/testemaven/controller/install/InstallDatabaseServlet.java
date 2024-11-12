@@ -33,6 +33,9 @@ public class InstallDatabaseServlet extends HttpServlet {
 			msg += "<h2>Create table user successful!</h2>\n";
 
 			// Criação e exclusão de outras tabelas
+			service.deleteExercicioTable();
+			msg += "<h2>Delete table Exercicio sucessful!</h2>\n";
+
 			service.createExercicioTable();
 			msg += "<h2>Create table exercicio successful!</h2>\n";
 			service.deleteMaquinaTable();
@@ -41,8 +44,18 @@ public class InstallDatabaseServlet extends HttpServlet {
 			msg += "<h2>Create table machine successful!</h2>\n";
 
 			// Imprime a mensagem de sucesso
+			msg += "<h2>Create table exercicio sucessful!</h2>\n";
+
 			page.println("<html lang='pt-br'><head><title>Teste</title></head><body>");
 			page.println(msg);
+			/*/
+			page.println("<code>");
+			for (Map.Entry<String,String> pair : env.entrySet()) {
+			    page.println(pair.getKey());
+			    page.println(pair.getValue());
+			}
+			//*/
+			page.println("</code>");
 			page.println("</body></html>");
 			page.close();
 

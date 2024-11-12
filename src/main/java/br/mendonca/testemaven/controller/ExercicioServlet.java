@@ -56,7 +56,7 @@ public class ExercicioServlet extends HttpServlet {
 			ExercicioService service = new ExercicioService();
 			service.register(nome, quantidadeSeries, disponivel);
 
-			response.sendRedirect("/dashboard/dashboard.jsp");
+			response.sendRedirect("/dashboard/register-exercicio.jsp");
 
 		} catch (NumberFormatException e) {
 			page.println("<html lang='pt-br'><head><title>Error</title></head><body>");
