@@ -13,8 +13,9 @@ link do deploy: https://jsp-servlet-baseapp-vx1l.onrender.com
   atualizar pagina about,atualizar README,
   criar scripts github actions,escolher lider,
   criar branchs (development,mickael);
-#2 instalar nova tabela execicio pelo /install, construir sistema de registrar  de forma permanente
-um exercicio com sua propriedade atraves de um item de menu ,preencher readme ,preencher about 
+  #2 instalar nova tabela execicio pelo /install, construir sistema de registrar  de forma permanente
+  um exercicio com sua propriedade atraves de um item de menu ,preencher readme ,preencher about 
+  #3 listar todos os exercicos atraves de um item menu, o usuario consegue exibir detalhes de um exercicio apartir de um item de menu
 - Igor Emanuel Oliveira Rêgo :
   #1 Atualizar o .gitignore,
   Escolher Líder,
