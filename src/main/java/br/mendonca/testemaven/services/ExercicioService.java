@@ -32,4 +32,16 @@ public class ExercicioService {
 
         return resp;
     }
+
+    public List<ExercicioDTO> listExerciciosPaginados(int pagina, int tamanhoPagina) throws ClassNotFoundException, SQLException {
+        List<ExercicioDTO> resp = new ArrayList<>();
+        ExercicioDAO dao = new ExercicioDAO();
+        List<Exercicio> lista = dao.listExerciciosPaginados(pagina, tamanhoPagina);
+
+        for (Exercicio exercicio : lista) {
+            resp.add(ExercicioDTO.exercicioMapper(exercicio));
+        }
+        return resp;
+    }
+
 }
