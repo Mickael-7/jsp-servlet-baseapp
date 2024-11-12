@@ -54,4 +54,16 @@ public class ProfessorService {
 
         return resp;
     }
+    public List<ProfessorDTO> listProfessoresPaginados(int pagina, int tamanhoPagina) throws ClassNotFoundException, SQLException {
+        List<ProfessorDTO> resp = new ArrayList<>();
+        ProfessorDAO dao = new ProfessorDAO(); // Instancia o DAO para acesso ao banco
+        List<Professor> lista = dao.listProfessoresPaginados(pagina, tamanhoPagina); // Chama o método do DAO
+
+        // Mapeia cada objeto Professor para ProfessorDTO
+        for (Professor professor : lista) {
+            resp.add(ProfessorDTO.professorMapper(professor)); // Mapeia para DTO
+        }
+
+        return resp; // Retorna a lista de DTOs
+    }
 }
