@@ -7,98 +7,102 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import br.mendonca.testemaven.model.entities.Maquina;
 
 public class MaquinaDAO {
 
-
+    // Método para registrar uma nova máquina no banco de dados
     public void register(Maquina maquina) throws ClassNotFoundException, SQLException {
-        Connection conn = ConnectionPostgres.getConexao();
-        conn.setAutoCommit(true);
+        String sql = "INSERT INTO maquinas (nome, peso_total, quebrada) VALUES (?, ?, ?)";
 
-        PreparedStatement ps = conn.prepareStatement("INSERT INTO maquinas (nome, peso_total, quebrada) values (?,?,?)");
-        ps.setString(1, maquina.getNome());
-        ps.setFloat(2, maquina.getPesoTotal());
-        ps.setBoolean(3, maquina.isQuebrada());
-        ps.execute();
-        ps.close();
+        try (Connection conn = ConnectionPostgres.getConexao();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, maquina.getNome());
+            ps.setFloat(2, maquina.getPesoTotal());
+            ps.setBoolean(3, maquina.isQuebrada());
+            ps.executeUpdate();
+        }
     }
 
+    // Método para listar todas as máquinas
     public List<Maquina> listAllMachines() throws ClassNotFoundException, SQLException {
-        ArrayList<Maquina> lista = new ArrayList<Maquina>();
+        List<Maquina> lista = new ArrayList<>();
+        String sql = "SELECT * FROM maquinas";
 
-        Connection conn = ConnectionPostgres.getConexao();
-        conn.setAutoCommit(true);
+        try (Connection conn = ConnectionPostgres.getConexao();
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
 
-        Statement st = conn.createStatement();
-        ResultSet rs = st.executeQuery("SELECT * FROM maquinas");
-
-        while (rs.next()) {
-            Maquina maquina = new Maquina();
-            maquina.setUuid(rs.getString("uuid"));
-            maquina.setNome(rs.getString("nome"));
-            maquina.setPesoTotal(rs.getFloat("peso_total"));
-            maquina.setQuebrada(rs.getBoolean("quebrada"));
-
-            lista.add(maquina);
+            while (rs.next()) {
+                Maquina maquina = new Maquina();
+                maquina.setUuid(rs.getString("uuid"));
+                maquina.setNome(rs.getString("nome"));
+                maquina.setPesoTotal(rs.getFloat("peso_total"));
+                maquina.setQuebrada(rs.getBoolean("quebrada"));
+                lista.add(maquina);
+            }
         }
-
-        rs.close();
-
         return lista;
     }
 
+    // Método para buscar máquinas por nome (com filtro)
     public List<Maquina> search(String nome) throws ClassNotFoundException, SQLException {
-        ArrayList<Maquina> lista = new ArrayList<Maquina>();
+        List<Maquina> lista = new ArrayList<>();
+        String sql = "SELECT * FROM maquinas WHERE LOWER(nome) LIKE LOWER(?) || '%'";
 
-        Connection conn = ConnectionPostgres.getConexao();
-        conn.setAutoCommit(true);
-
-        PreparedStatement ps = conn.prepareStatement("SELECT * FROM maquinas WHERE LOWER(nome) LIKE LOWER(?) || '%'");
-        ps.setString(1, nome);
-
-        ResultSet rs = ps.executeQuery();
-
-        while (rs.next()) {
-            Maquina maquina = new Maquina();
-            maquina.setUuid(rs.getString("uuid"));
-            maquina.setNome(rs.getString("nome"));
-            maquina.setPesoTotal(rs.getFloat("peso_total"));
-            maquina.setQuebrada(rs.getBoolean("quebrada"));
-
-            lista.add(maquina);
+        try (Connection conn = ConnectionPostgres.getConexao();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, nome);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Maquina maquina = new Maquina();
+                    maquina.setUuid(rs.getString("uuid"));
+                    maquina.setNome(rs.getString("nome"));
+                    maquina.setPesoTotal(rs.getFloat("peso_total"));
+                    maquina.setQuebrada(rs.getBoolean("quebrada"));
+                    lista.add(maquina);
+                }
+            }
         }
-
-        rs.close();
-
         return lista;
     }
+
+    // Método para listar máquinas de forma paginada
     public List<Maquina> listMachinesPaginated(int pagina, int tamanhoPagina) throws ClassNotFoundException, SQLException {
         List<Maquina> lista = new ArrayList<>();
-
-        Connection conn = ConnectionPostgres.getConexao();
-        conn.setAutoCommit(true);
-
         String sql = "SELECT * FROM maquinas ORDER BY nome LIMIT ? OFFSET ?";
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setInt(1, tamanhoPagina);
-        ps.setInt(2, pagina * tamanhoPagina);
 
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            Maquina maquina = new Maquina();
-            maquina.setUuid(rs.getString("uuid"));
-            maquina.setNome(rs.getString("nome"));
-            maquina.setPesoTotal(rs.getFloat("peso_total"));
-            maquina.setQuebrada(rs.getBoolean("quebrada"));
-            lista.add(maquina);
+        try (Connection conn = ConnectionPostgres.getConexao();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, tamanhoPagina);
+            ps.setInt(2, pagina * tamanhoPagina);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Maquina maquina = new Maquina();
+                    maquina.setUuid(rs.getString("uuid"));
+                    maquina.setNome(rs.getString("nome"));
+                    maquina.setPesoTotal(rs.getFloat("peso_total"));
+                    maquina.setQuebrada(rs.getBoolean("quebrada"));
+                    lista.add(maquina);
+                }
+            }
         }
-
-        rs.close();
-        ps.close();
-
         return lista;
     }
 
+    // Método para obter o total de máquinas cadastradas
+    public int getTotalMaquinas() throws ClassNotFoundException, SQLException {
+        String sql = "SELECT COUNT(*) AS total FROM maquinas";
+        int total = 0;
+
+        try (Connection conn = ConnectionPostgres.getConexao();
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            if (rs.next()) {
+                total = rs.getInt("total");
+            }
+        }
+        return total;
+    }
 }

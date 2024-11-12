@@ -2,17 +2,19 @@
 <%@ page import="java.util.List" %>
 <%@ page import="br.mendonca.testemaven.services.dto.MaquinaDTO" %>
 <%@ page import="br.mendonca.testemaven.services.MaquinaService" %>
-
 <%
     if (session.getAttribute("user") != null) {
-        MaquinaService maquinaService = new MaquinaService();
+        try {
+            MaquinaService maquinaService = new MaquinaService();
 
-        // Lógica de paginação
-        int pagina = request.getParameter("pagina") != null ? Integer.parseInt(request.getParameter("pagina")) : 0;
-        int tamanhoPagina = 3; // Defina o tamanho da página
-        List<MaquinaDTO> lista = maquinaService.listMaquinasPaginadas(pagina, tamanhoPagina);
-        int totalMaquinas = maquinaService.getTotalMaquinas();
-        int totalPaginas = (int) Math.ceil((double) totalMaquinas / tamanhoPagina);
+            // Lógica de paginação
+            int pagina = request.getParameter("pagina") != null ? Integer.parseInt(request.getParameter("pagina")) : 0;
+            int tamanhoPagina = 3;
+            List<MaquinaDTO> lista = maquinaService.listMachinesPaginated(pagina, tamanhoPagina);
+
+            // Obter total de máquinas para a paginação
+            int totalMaquinas = maquinaService.getTotalMaquinas();
+            int totalPaginas = (int) Math.ceil((double) totalMaquinas / tamanhoPagina);
 %>
 
 <!doctype html>
@@ -82,6 +84,10 @@
 </html>
 
 <%
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("error.jsp");
+        }
     } else {
         response.sendRedirect("login.jsp");
     }
