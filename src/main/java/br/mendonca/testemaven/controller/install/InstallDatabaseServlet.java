@@ -56,6 +56,9 @@ public class InstallDatabaseServlet extends HttpServlet {
 			// Imprime a mensagem de sucesso
 			msg += "<h2>Create table exercicio sucessful!</h2>\n";
 
+			service.populateProfessorTable();
+			msg += "<h2>Inserted 7 random professores successfully!\n";
+
 
 			page.println("<html lang='pt-br'><head><title>Teste</title></head><body>");
 			page.println(msg);

@@ -3,6 +3,7 @@ package br.mendonca.testemaven.services;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 
 import br.mendonca.testemaven.dao.ConnectionPostgres;
 
@@ -75,5 +76,20 @@ public class InstallService {
 	public void deleteMaquinaTable() throws ClassNotFoundException, SQLException {
 		statement("DROP TABLE IF EXISTS maquinas");
 
+	}
+
+	public void populateProfessorTable() throws ClassNotFoundException, SQLException {
+		String[] nomes = {"Carlos", "Ana", "João", "Maria", "Lucas", "Fernanda", "Paulo"};
+		Random random = new Random();
+
+		for (String nome : nomes) {
+			int idade = random.nextInt(40) + 25; // Idade aleatória entre 25 e 64 anos
+			boolean estaPresente = random.nextBoolean(); // Aleatório entre true ou false
+
+			String sql = String.format("INSERT INTO professor (name, idade, estaPresente) VALUES ('%s', %d, %b)",
+					nome, idade, estaPresente);
+
+			statement(sql);
+		}
 	}
 }
