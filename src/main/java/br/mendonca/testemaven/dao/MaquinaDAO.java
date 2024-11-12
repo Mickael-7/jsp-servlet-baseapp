@@ -74,4 +74,31 @@ public class MaquinaDAO {
 
         return lista;
     }
+    public List<Maquina> listMachinesPaginated(int pagina, int tamanhoPagina) throws ClassNotFoundException, SQLException {
+        List<Maquina> lista = new ArrayList<>();
+
+        Connection conn = ConnectionPostgres.getConexao();
+        conn.setAutoCommit(true);
+
+        String sql = "SELECT * FROM maquinas ORDER BY nome LIMIT ? OFFSET ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, tamanhoPagina);
+        ps.setInt(2, pagina * tamanhoPagina);
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Maquina maquina = new Maquina();
+            maquina.setUuid(rs.getString("uuid"));
+            maquina.setNome(rs.getString("nome"));
+            maquina.setPesoTotal(rs.getFloat("peso_total"));
+            maquina.setQuebrada(rs.getBoolean("quebrada"));
+            lista.add(maquina);
+        }
+
+        rs.close();
+        ps.close();
+
+        return lista;
+    }
+
 }
