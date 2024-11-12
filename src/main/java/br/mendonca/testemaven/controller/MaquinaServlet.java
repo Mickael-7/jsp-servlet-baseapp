@@ -15,7 +15,8 @@ import jakarta.servlet.http.HttpServletResponse;
 public class MaquinaServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter page = response.getWriter();
 
@@ -44,27 +45,26 @@ public class MaquinaServlet extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter page = response.getWriter();
 
         try {
-
             String nome = request.getParameter("nome");
             float pesoTotal = Float.parseFloat(request.getParameter("pesoTotal"));
             boolean quebrada = request.getParameter("quebrada") != null;
-
 
             MaquinaService service = new MaquinaService();
             service.register(nome, pesoTotal, quebrada);
 
 
-            page.println("<html lang='pt-br'><head><title>Sucesso</title></head><body>");
-            page.println("<h1>Máquina registrada com sucesso!</h1>");
-            page.println("<p>Nome: " + nome + "</p>");
-            page.println("<p>Peso Total: " + pesoTotal + " kg</p>");
-            page.println("<p>Está Quebrada: " + (quebrada ? "Sim" : "Não") + "</p>");
-            page.println("</body></html>");
+            page.println("<html lang='pt-br'><head><title>Salvo com Sucesso</title>");
+            page.println("<script type='text/javascript'>");
+            page.println("alert('Maquina salva com sucesso!');");
+            page.println("window.location.href = '/dashboard/list-maquinas.jsp';");
+            page.println("</script>");
+            page.println("</head><body></body></html>");
             page.close();
 
         } catch (NumberFormatException e) {
