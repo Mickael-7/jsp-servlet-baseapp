@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-App Exercicios
 
-=======
 App Academia
->>>>>>> Igor
+
 link do deploy: https://jsp-servlet-baseapp-vx1l.onrender.com
 ## Desenolvedores
 
