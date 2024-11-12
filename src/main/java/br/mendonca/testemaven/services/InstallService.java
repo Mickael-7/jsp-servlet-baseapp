@@ -106,4 +106,21 @@ public class InstallService {
 			statement(sql);
 		}
 	}
+	public void populateMaquinaTable() throws ClassNotFoundException, SQLException {
+		String[] maquinas = {"Leg Press", "Supino Inclinado", "Cadeira Extensora", "Pulley Costas", "Hack Machine", "Pec Deck", "Bíceps Máquina"};
+		Random random = new Random();
+
+		for (String nome : maquinas) {
+			float pesoTotal = 50 + random.nextFloat() * 150; // Peso total entre 50kg e 200kg
+			boolean quebrada = random.nextBoolean(); // Aleatório entre true ou false
+
+			String sql = String.format(
+					"INSERT INTO maquinas (nome, peso_total, quebrada) VALUES ('%s', %.2f, %b)",
+					nome, pesoTotal, quebrada
+			);
+
+			statement(sql);
+		}
+	}
+
 }
