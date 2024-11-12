@@ -3,6 +3,7 @@ package br.mendonca.testemaven.services;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import br.mendonca.testemaven.dao.ProfessorDAO;
 import br.mendonca.testemaven.model.entities.Professor;
@@ -10,11 +11,10 @@ import br.mendonca.testemaven.services.dto.ProfessorDTO;
 
 public class ProfessorService {
 
-    public void register(String uuid, String name, Integer idade, boolean estaPresente) throws ClassNotFoundException, SQLException {
+    public void register(String name, Integer idade, boolean estaPresente) throws ClassNotFoundException, SQLException {
         ProfessorDAO dao = new ProfessorDAO();
 
         Professor professor = new Professor();
-        professor.setUuid(uuid);
         professor.setName(name);
         professor.setIdade(idade);
         professor.setEstaPresente(estaPresente);
@@ -35,7 +35,7 @@ public class ProfessorService {
         return resp;
     }
 
-    public ProfessorDTO searchProfessorByUuid(String uuid) throws ClassNotFoundException, SQLException {
+    public ProfessorDTO searchProfessorByUuid(UUID uuid) throws ClassNotFoundException, SQLException {
         ProfessorDAO dao = new ProfessorDAO();
         Professor professor = dao.searchByUuid(uuid);
 

@@ -25,9 +25,11 @@ public class InstallService {
 	public void deleteUserTable() throws ClassNotFoundException, SQLException {
 		statement("DROP TABLE IF EXISTS users");
 	}
+
 	public void deleteExercicioTable() throws ClassNotFoundException, SQLException {
 		statement("DROP TABLE IF EXISTS exercicio");
 	}
+
 
 
 	public void createUserTable() throws ClassNotFoundException, SQLException {
@@ -38,13 +40,20 @@ public class InstallService {
 				+ "    password VARCHAR(255) NOT NULL)"
 		);
 
-		// Criação da tabela professor
-		statement("CREATE TABLE professor("
+
+	}
+	public void deleteProfessorTable() throws ClassNotFoundException, SQLException {
+		statement("DROP TABLE IF EXISTS professor");
+	}
+
+
+	public void createProfessorTable() throws ClassNotFoundException, SQLException {
+		statement("CREATE TABLE professor ("
 				+ "    uuid UUID DEFAULT gen_random_uuid() PRIMARY KEY,"
 				+ "    name VARCHAR(255) NOT NULL,"
-				+ "    idade INT NOT NULL,"
-				+ "    estaPresente BOOLEAN NOT NULL)"
-		);
+				+ "    idade INTEGER NOT NULL,"
+				+ "    estaPresente BOOLEAN NOT NULL"
+				+ ")");
 	}
 	public void createExercicioTable() throws ClassNotFoundException, SQLException {
 		statement("CREATE TABLE exercicio ("
@@ -66,6 +75,7 @@ public class InstallService {
 
 	public void deleteMaquinaTable() throws ClassNotFoundException, SQLException {
 		statement("DROP TABLE IF EXISTS maquinas");
+
 	}
 
 	public void populateExercicioTable() throws ClassNotFoundException, SQLException {
