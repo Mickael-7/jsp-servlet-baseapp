@@ -2,18 +2,10 @@
 link do deploy: https://jsp-servlet-baseapp-vx1l.onrender.com
 ## Desenolvedores
 
-- Nathan Dalbert Lopes os Santos:
-  # 1
-- Atualizar o .gitignore,
-  Escolher Líder,
-  Criar Branch nathan,
-  Atualizar o Readme;
-# 2
-- Criar entidade professor,
-- Preencher about,
-- Preencher Readme,
-- O usuario consegue
-- O usuario consegue instalar novas tabelas no bd pela entidade install
+-Nathan Dalbert Lopes os Santos: #1 Atualizar o .gitignore, Escolher Líder, Criar Branch nathan, 
+Atualizar o Readme;#2 instalar nova tabela de Professor pelo /install, construir sistema de registrar de forma
+permanente um professor com sua propriedade atraves de um item de menu, construir sistema de visualização das maquina cadastradas 
+atraves de um item de menu, preencher readme ,preencher about
 - 
 - Mickael de Albuquerque Silva: fazer deploy da aplicacao no render.com,
   instalar db na maquina do cliente,
