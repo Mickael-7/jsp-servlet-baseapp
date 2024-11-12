@@ -27,5 +27,6 @@ atraves de um item de menu, preencher readme ,preencher about
   Atualizar o Readme;
   #2 instalar nova tabela maquinas pelo /install, construir sistema de registrar de forma permanente
 uma maquina com sua propriedade atraves de um item de menu, construir sistema de visualização das maquina cadastradas atraves de um item de menu, preencher readme ,preencher about
+- #3 adicionar as novas tabelas no banco com 7 maquinas, visualização com paginação de 3 maquinas, atualizar o readme, 
 
   
