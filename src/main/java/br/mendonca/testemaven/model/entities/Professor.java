@@ -1,5 +1,7 @@
 package br.mendonca.testemaven.model.entities;
 
+import java.util.UUID;
+
 public class Professor {
     private String uuid;
     private String name;

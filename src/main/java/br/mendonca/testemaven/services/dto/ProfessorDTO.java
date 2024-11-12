@@ -2,18 +2,20 @@ package br.mendonca.testemaven.services.dto;
 
 import br.mendonca.testemaven.model.entities.Professor;
 
+import java.util.UUID;
+
 public class ProfessorDTO {
 
-    private String uuid;
+    private UUID uuid;
     private String name;
     private Integer idade;
     private boolean estaPresente;
 
-    public String getUuid() {
+    public UUID getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
 
@@ -43,7 +45,6 @@ public class ProfessorDTO {
 
     public static ProfessorDTO professorMapper(Professor professor) {
         ProfessorDTO dto = new ProfessorDTO();
-        dto.setUuid(professor.getUuid());
         dto.setName(professor.getName());
         dto.setIdade(professor.getIdade());
         dto.setEstaPresente(professor.isEstaPresente());
