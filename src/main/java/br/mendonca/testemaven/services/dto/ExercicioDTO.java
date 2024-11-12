@@ -4,6 +4,16 @@ import br.mendonca.testemaven.model.entities.Exercicio;
 
 public class ExercicioDTO {
 
+    private String Uuid;
+
+    public String getUuid() {
+        return Uuid;
+    }
+
+    public void setUuid(String uuid) {
+        Uuid = uuid;
+    }
+
     private String nome;
     private int quantidadeSeries;
     private boolean disponivelNaAcademia;
