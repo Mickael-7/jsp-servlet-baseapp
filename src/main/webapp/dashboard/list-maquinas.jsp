@@ -2,17 +2,11 @@
 <%@ page import="java.util.List" %>
 <%@ page import="br.mendonca.testemaven.services.dto.MaquinaDTO" %>
 <%@ page import="br.mendonca.testemaven.services.MaquinaService" %>
-<%@ page import="java.util.UUID" %>
 
 <%
     if (session.getAttribute("user") != null) {
         MaquinaService maquinaService = new MaquinaService();
-
-        // Parâmetro para controlar a exibição de máquinas ocultas ou não
-        boolean showHidden = request.getParameter("showHidden") != null && request.getParameter("showHidden").equals("true");
-
-        // Listar as máquinas de acordo com o parâmetro showHidden
-        List<MaquinaDTO> lista = showHidden ? maquinaService.listHiddenMachines() : maquinaService.listVisibleMachines();
+        List<MaquinaDTO> lista = maquinaService.listAllMachines();
 %>
 
 <!doctype html>
@@ -23,16 +17,6 @@
     <title>Gestão de Máquinas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
-    <script>
-        function toggleDetails(id) {
-            const detailsRow = document.getElementById("details-" + .getUuid);
-            if (detailsRow.style.display === "none") {
-                detailsRow.style.display = "table-row";
-            } else {
-                detailsRow.style.display = "none";
-            }
-        }
-    </script>
 </head>
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 
@@ -49,23 +33,11 @@
                     <li class="nav-item"><a class="nav-link" href="/dashboard/dashboard.jsp">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/dashboard/users">Users</a></li>
                     <li class="nav-item"><a class="nav-link" href="/dashboard/about.jsp">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/dashboard/list-maquinas.jsp">Máquinas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/dashboard/list-maquinas.jsp">Maquinas</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-
-    <!-- Menu para alternar entre mostrar máquinas visíveis e ocultas -->
-    <div class="mb-3">
-        <form method="get" action="list-maquinas.jsp">
-            <label for="showHidden">Mostrar máquinas:</label>
-            <select name="showHidden" id="showHidden" class="form-select w-auto d-inline">
-                <option value="false" <%= !showHidden ? "selected" : "" %>>Visíveis</option>
-                <option value="true" <%= showHidden ? "selected" : "" %>>Ocultas</option>
-            </select>
-            <button type="submit" class="btn btn-secondary ms-2">Filtrar</button>
-        </form>
-    </div>
 
     <section id="cadastroMaquina">
         <h1 class="h3 mb-3 fw-normal">Cadastrar Nova Máquina:</h1>
@@ -92,7 +64,8 @@
             <thead>
                 <tr>
                     <th scope="col">Nome</th>
-                    <th scope="col">Ações</th>
+                    <th scope="col">Peso Total (kg)</th>
+                    <th scope="col">Quebrada</th>
                 </tr>
             </thead>
             <tbody>
@@ -100,25 +73,13 @@
                     <% for (MaquinaDTO maquina : lista) { %>
                     <tr>
                         <td><%= maquina.getNome() %></td>
-                        <td>
-                            <!-- Botão para exibir os detalhes da máquina -->
-                            <button type="button" class="btn btn-info btn-sm" onclick="toggleDetails('<%= maquina.getUuid() %>')">Detalhes</button>
-
-                            <!-- Botão renomeado para "Deletar" sem alterar a ação -->
-                            <button type="button" class="btn btn-warning btn-sm">Deletar</button>
-                        </td>
-                    </tr>
-                    <!-- Linha de detalhes da máquina (escondida por padrão) -->
-                    <tr id="details-<%= maquina.getUuid() %>" style="display: none;">
-                        <td colspan="2">
-                            <strong>Peso Total:</strong> <%= maquina.getPesoTotal() %> kg<br>
-                            <strong>Quebrada:</strong> <%= maquina.isQuebrada() ? "Sim" : "Não" %>
-                        </td>
+                        <td><%= maquina.getPesoTotal() %></td>
+                        <td><%= maquina.isQuebrada() ? "Sim" : "Não" %></td>
                     </tr>
                     <% } %>
                 <% } else { %>
                     <tr>
-                        <td colspan="2" class="text-center">Nenhuma máquina encontrada</td>
+                        <td colspan="4" class="text-center">Nenhuma máquina encontrada</td>
                     </tr>
                 <% } %>
             </tbody>
