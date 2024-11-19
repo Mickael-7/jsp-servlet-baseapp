@@ -8,7 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDTO {
-	
+	private String uuid;
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
 	private String name;
 	private String email;
 	private int idade;
