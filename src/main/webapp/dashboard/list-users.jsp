@@ -39,8 +39,8 @@
 			</div>
 		</nav>
     
-    
-    
+
+
     	<h1 class="h3 mb-3 fw-normal">Usuários</h1>
 		<table class="table">
 			<thead>
@@ -61,16 +61,23 @@
 				<td><%= user.getName() %></td>
 				<td><%= user.getEmail() %></td>
 				<td>Apagar</td>
+				<td>
+                	<form method="post" action="/registerseguidor" class="d-inline">
+                		<input type="hidden" name="seguidorUuid" value="<%= session.getAttribute("userUUID") %>">
+                		<input type="hidden" name="seguidoUuid" value="<%= user.getUuid() %>">
+                		<button type="submit" class="btn btn-primary btn-sm">Seguir</button>
+                	</form>
+                </td>
 			</tr>
 			<% } %>
 			</tbody>
 		</table>
-		
-		
+
+
 	</main>
-    
-    
-    
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
