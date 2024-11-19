@@ -10,6 +10,7 @@ link do deploy: https://jsp-servlet-baseapp-vx1l.onrender.com
   permanente um professor com sua propriedade atraves de um item de menu, construir sistema de visualização dos professores cadastrados
   atraves de um item de menu,o usuário instala as novas tabelas do banco com 7 indivíduos aleatórios pelo endpoint /install,
   Os usuários visualizam todos os indivíduos listados com paginação de 3 indivíduos.
+- #4 o usuario pode deletar um professor cadastrado da listagem, o usuario consegue exibir detalhes de um professor apartir de um item de menu,o usuario pode na listagem procurar por um usuario por parte do nome 
 
 
 - Mickael de Albuquerque Silva: fazer deploy da aplicacao no render.com,
