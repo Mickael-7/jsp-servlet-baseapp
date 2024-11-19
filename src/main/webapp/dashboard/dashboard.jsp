@@ -30,13 +30,15 @@ if (session.getAttribute("user") != null) {
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="/dashboard/dashboard.jsp">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/dashboard/list-users.jsp">Users</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/dashboard/users">Users</a></li>
                     <li class="nav-item"><a class="nav-link" href="/dashboard/about.jsp">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="/dashboard/list-professor.jsp">Registrar professor</a></li>
                     <li class="nav-item"><a class="nav-link" href="/dashboard/register-exercicio.jsp">Registrar Exercício</a></li>
                     <li class="nav-item"><a class="nav-link" href="/dashboard/list-exercicios-excluidos.jsp">Exercicios Excluidos</a></li>
                     <li class="nav-item"><a class="nav-link" href="/dashboard/list-maquinas.jsp">Máquinas</a></li>
                     <li class="nav-item"><a class="nav-link" href="/dashboard/list-maquinas-excluidos.jsp">Maquinas Excluídas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/dashboard/novamaquina.jsp">Criar Máquina</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/dashboard/list-seguidores.jsp">seguidos</a></li>
                 </ul>
                 <span class="navbar-text">
                     <a class="btn btn-success" href="/auth/logoff">Logoff</a>
