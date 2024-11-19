@@ -7,6 +7,15 @@ public class Professor {
     private String name;
     private Integer idade;
     private boolean estaPresente;
+    private  boolean estaAtivo;
+
+    public boolean isEstaAtivo() {
+        return estaAtivo;
+    }
+
+    public void setEstaAtivo(boolean estaAtivo) {
+        this.estaAtivo = estaAtivo;
+    }
 
     public String getUuid() {
         return uuid;
