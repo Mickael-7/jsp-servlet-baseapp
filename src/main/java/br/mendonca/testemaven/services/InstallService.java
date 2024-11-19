@@ -52,9 +52,11 @@ public class InstallService {
 				+ "    uuid UUID DEFAULT gen_random_uuid() PRIMARY KEY,"
 				+ "    name VARCHAR(255) NOT NULL,"
 				+ "    idade INTEGER NOT NULL,"
-				+ "    estaPresente BOOLEAN NOT NULL"
+				+ "    estaPresente BOOLEAN NOT NULL,"
+				+ "    estaAtivo BOOLEAN NOT NULL DEFAULT true"
 				+ ")");
 	}
+
 	public void createExercicioTable() throws ClassNotFoundException, SQLException {
 		statement("CREATE TABLE exercicio ("
 				+ "    uuid UUID DEFAULT gen_random_uuid() PRIMARY KEY,"
