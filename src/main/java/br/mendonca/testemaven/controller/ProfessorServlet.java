@@ -43,9 +43,10 @@ public class ProfessorServlet extends HttpServlet {
             String name = request.getParameter("nome");
             int idade = Integer.parseInt(request.getParameter("idade"));
             boolean estaPresente = request.getParameter("estaPresente") != null;
+            boolean estaAtivo = request.getParameter("estaAtivo") != null ? Boolean.parseBoolean(request.getParameter("estaAtivo")) : true;
 
             ProfessorService service = new ProfessorService();
-            service.register( name, idade, estaPresente);
+            service.register( name, idade, estaPresente,estaAtivo);
             response.sendRedirect("/dashboard/list-professor.jsp");
 
         } catch (NumberFormatException e) {
