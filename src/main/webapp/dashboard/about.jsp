@@ -64,7 +64,7 @@ if (session.getAttribute("user") != null) {
 				<tr>
 					<td scope="col">Mickael de Albuquerque Silva</th>
 					<td scope="col">Exercicio</th>
-					<td scope="col">um exercico e criado contendo seu nome, a quantidade de series e se esta disponivel para ser feito na academia</th>
+					<td scope="col">O usuário pode, na listagem de usuários, selecionar um usuário para seguir e através do endpoint seguindo visualizar quem ele segue e deixar de seguir</th>
 				</tr>
 				<tr>
                 	<td scope="col">Nathan Dalbert Lopes Dos Santos</th>
