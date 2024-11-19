@@ -10,12 +10,13 @@ import br.mendonca.testemaven.services.dto.ExercicioDTO;
 
 public class ExercicioService {
 
-    public void register(String nome, int quantidadeSeries, boolean disponivel) throws SQLException, ClassNotFoundException {
+    public void register(String nome, int quantidadeSeries, boolean disponivel, boolean oculta) throws SQLException, ClassNotFoundException {
         ExercicioDAO dao = new ExercicioDAO();
         Exercicio exercicio = new Exercicio();
         exercicio.setNome(nome);
         exercicio.setQuantidadeSeries(quantidadeSeries);
         exercicio.setDisponivelNaAcademia(disponivel);
+        exercicio.setOculta(oculta); // Novo campo
 
         dao.register(exercicio);
     }
@@ -44,4 +45,19 @@ public class ExercicioService {
         return resp;
     }
 
+    public List<ExercicioDTO> listExerciciosExcluidosPaginados(int pagina, int tamanhoPagina) throws ClassNotFoundException, SQLException {
+        List<ExercicioDTO> resp = new ArrayList<>();
+        ExercicioDAO dao = new ExercicioDAO();
+        List<Exercicio> lista = dao.listExerciciosExcluidosPaginados(pagina, tamanhoPagina);
+
+        for (Exercicio exercicio : lista) {
+            resp.add(ExercicioDTO.exercicioMapper(exercicio));
+        }
+        return resp;
+    }
+
+    public void desativarExercicio(String uuid) throws ClassNotFoundException, SQLException {
+        ExercicioDAO dao = new ExercicioDAO();
+        dao.desativarExercicio(uuid);
+    }
 }

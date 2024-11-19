@@ -62,7 +62,8 @@ public class InstallService {
 				+ "    uuid UUID DEFAULT gen_random_uuid() PRIMARY KEY,"
 				+ "    nome VARCHAR(255) NOT NULL,"
 				+ "    quantidade_series INT NOT NULL,"
-				+ "    disponivel_na_academia BOOLEAN NOT NULL)"
+				+ "    disponivel_na_academia BOOLEAN NOT NULL,"
+				+ "	   oculta BOOLEAN NOT NULL)"
 		);
 	}
 
@@ -104,12 +105,30 @@ public class InstallService {
 		for (String nome : exercicios) {
 			int quantidadeSeries = random.nextInt(5) + 1;
 			boolean disponivelNaAcademia = random.nextBoolean();
+			boolean oculta = true	;
 
-			String sql = String.format("INSERT INTO exercicio (nome, quantidade_series, disponivel_na_academia) VALUES ('%s', %d, %b)",
-					nome, quantidadeSeries, disponivelNaAcademia);
+			String sql = String.format("INSERT INTO exercicio (nome, quantidade_series, disponivel_na_academia, oculta) VALUES ('%s', %d, %b, %b)",
+					nome, quantidadeSeries, disponivelNaAcademia,oculta);
 
 
 			statement(sql);
 		}
 	}
+	public void populateMaquinaTable() throws ClassNotFoundException, SQLException {
+		String[] maquinas = {"Leg Press", "Supino Inclinado", "Cadeira Extensora", "Pulley Costas", "Hack Machine", "Pec Deck", "Bíceps Máquina"};
+		Random random = new Random();
+
+		for (String nome : maquinas) {
+			float pesoTotal = 50 + random.nextFloat() * 150; // Peso total entre 50kg e 200kg
+			boolean quebrada = random.nextBoolean(); // Aleatório entre true ou false
+
+			String sql = String.format(
+					"INSERT INTO maquinas (nome, peso_total, quebrada) VALUES ('%s', %.2f, %b)",
+					nome, pesoTotal, quebrada
+			);
+
+			statement(sql);
+		}
+	}
+
 }

@@ -21,67 +21,50 @@ public class InstallDatabaseServlet extends HttpServlet {
 
 		try {
 			InstallService service = new InstallService();
-			String msg = "<h1>INSTALL DATABASE</h1>";
+			StringBuilder msg = new StringBuilder("<h1>INSTALL DATABASE</h1>");
 
+			// Testa a conexão com o banco de dados
 			service.testConnection();
-			msg += "<h2>Connection DB successful!</h2>\n";
+			msg.append("<h2>Connection to DB successful!</h2>\n");
 
-			// Exclui a tabela de usuários e cria uma nova
+			// Exclui e recria a tabela de usuários
 			service.deleteUserTable();
-			msg += "<h2>Delete table user successful!</h2>\n";
+			msg.append("<h2>Deleted table 'users' successfully!</h2>\n");
 			service.createUserTable();
+			msg.append("<h2>Created table 'users' successfully!</h2>\n");
 
-			msg += "<h2>Create table user sucessful!</h2>\n";
-
+			// Exclui e recria a tabela de professores
 			service.deleteProfessorTable();
-			msg += "<h2>Delete table professor sucessful!</h2>\n";
-
+			msg.append("<h2>Deleted table 'professor' successfully!</h2>\n");
 			service.createProfessorTable();
-			msg += "<h2>Create table professor sucessful!</h2>\n";
-
-
-			msg += "<h2>Create table user successful!</h2>\n";
-
-
-			service.deleteExercicioTable();
-			msg += "<h2>Delete table Exercicio sucessful!</h2>\n";
-			service.createExercicioTable();
-			msg += "<h2>Create table exercicio successful!</h2>\n";
-			service.populateExercicioTable();
-			msg += "<h2>Inserted 7 random exercises successfully!</h2>\n";
-
-			service.deleteMaquinaTable();
-			msg += "<h2>Delete table machine successful!</h2>\n";
-			service.createMaquinaTable();
-			msg += "<h2>Create table machine successful!</h2>\n";
-
-			// Imprime a mensagem de sucesso
-			msg += "<h2>Create table exercicio sucessful!</h2>\n";
-
+			msg.append("<h2>Created table 'professor' successfully!</h2>\n");
 			service.populateProfessorTable();
-			msg += "<h2>Inserted 7 random professores successfully!\n";
+			msg.append("<h2>Inserted random professors successfully!</h2>\n");
 
+			// Exclui e recria a tabela de exercícios
+			service.deleteExercicioTable();
+			msg.append("<h2>Deleted table 'exercicio' successfully!</h2>\n");
+			service.createExercicioTable();
+			msg.append("<h2>Created table 'exercicio' successfully!</h2>\n");
+			service.populateExercicioTable();
+			msg.append("<h2>Inserted random exercises successfully!</h2>\n");
 
-			page.println("<html lang='pt-br'><head><title>Teste</title></head><body>");
-			page.println(msg);
-			/*/
-			page.println("<code>");
-			for (Map.Entry<String,String> pair : env.entrySet()) {
-			    page.println(pair.getKey());
-			    page.println(pair.getValue());
-			}
-			//*/
-			page.println("</code>");
+			// Exclui e recria a tabela de máquinas
+			service.deleteMaquinaTable();
+			msg.append("<h2>Deleted table 'maquinas' successfully!</h2>\n");
+			service.createMaquinaTable();
+			msg.append("<h2>Created table 'maquinas' successfully!</h2>\n");
+			service.populateMaquinaTable();
+			msg.append("<h2>Inserted 7 random machines successfully!</h2>\n");
+
+			// Exibe a página HTML com as mensagens
+			page.println("<html lang='pt-br'><head><title>Instalação do Banco de Dados</title></head><body>");
+			page.println(msg.toString());
 			page.println("</body></html>");
 			page.close();
 
 		} catch (Exception e) {
-
-			// Escreve as mensagens de Exception em uma p�gina de resposta.
-			// N�o apagar este bloco.
-
-			// Captura as mensagens de erro e exibe-as no HTML
-
+			// Captura mensagens de erro e as exibe em uma página HTML
 			StringWriter sw = new StringWriter();
 			PrintWriter pw = new PrintWriter(sw);
 			e.printStackTrace(pw);
