@@ -69,7 +69,7 @@ if (session.getAttribute("user") != null) {
 				<tr>
                 	<td scope="col">Nathan Dalbert Lopes Dos Santos</th>
                 	<td scope="col">Entidade Professor</th>
-                	<td scope="col">Coloque aqui sua regra de negócio</th>
+                	<td scope="col">O usuário pode, na listagemde usuarios, procurar por um usuario por parte do nome e atualizar filtros: um para a propriedade  de número idade minima e máxima e outro para propriedade de booleana status. Os dados do banco devem vir filtrados por um ou mais endpoints </th>
                 </tr>
                 <tr>
                 	<td scope="col">Igor Emanuel Oliveira Rêgo</th>
