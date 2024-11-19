@@ -23,6 +23,7 @@ public class InstallService {
 	}
 
 	public void deleteUserTable() throws ClassNotFoundException, SQLException {
+		deleteSeguidorTable();
 		statement("DROP TABLE IF EXISTS users");
 	}
 
@@ -42,6 +43,20 @@ public class InstallService {
 
 
 	}
+
+
+	public void createSeguidoresTable() throws ClassNotFoundException, SQLException {
+		statement("CREATE TABLE seguidores ("
+				+ "    uuid UUID DEFAULT gen_random_uuid() PRIMARY KEY,"
+				+ "    seguidor_uuid VARCHAR(255) NOT NULL,"
+				+ "    seguido_uuid VARCHAR(255) NOT NULL"
+				+ ")");
+	}
+
+	public void deleteSeguidorTable() throws ClassNotFoundException, SQLException {
+		statement("DROP TABLE IF EXISTS seguidores");
+	}
+
 	public void deleteProfessorTable() throws ClassNotFoundException, SQLException {
 		statement("DROP TABLE IF EXISTS professor");
 	}
