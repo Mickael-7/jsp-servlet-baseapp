@@ -60,7 +60,8 @@ public class InstallService {
 				+ "    uuid UUID DEFAULT gen_random_uuid() PRIMARY KEY,"
 				+ "    nome VARCHAR(255) NOT NULL,"
 				+ "    quantidade_series INT NOT NULL,"
-				+ "    disponivel_na_academia BOOLEAN NOT NULL)"
+				+ "    disponivel_na_academia BOOLEAN NOT NULL,"
+				+ "	   oculta BOOLEAN NOT NULL)"
 		);
 	}
 
@@ -98,9 +99,10 @@ public class InstallService {
 		for (String nome : exercicios) {
 			int quantidadeSeries = random.nextInt(5) + 1;
 			boolean disponivelNaAcademia = random.nextBoolean();
+			boolean oculta = true	;
 
-			String sql = String.format("INSERT INTO exercicio (nome, quantidade_series, disponivel_na_academia) VALUES ('%s', %d, %b)",
-					nome, quantidadeSeries, disponivelNaAcademia);
+			String sql = String.format("INSERT INTO exercicio (nome, quantidade_series, disponivel_na_academia, oculta) VALUES ('%s', %d, %b, %b)",
+					nome, quantidadeSeries, disponivelNaAcademia,oculta);
 
 
 			statement(sql);

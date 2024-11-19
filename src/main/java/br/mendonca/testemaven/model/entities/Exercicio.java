@@ -6,6 +6,7 @@ public class Exercicio {
     private String nome;
     private int quantidadeSeries;
     private boolean disponivelNaAcademia;
+    private boolean oculta; // Novo campo
 
     public String getUuid() {
         return uuid;
@@ -37,5 +38,13 @@ public class Exercicio {
 
     public void setDisponivelNaAcademia(boolean disponivelNaAcademia) {
         this.disponivelNaAcademia = disponivelNaAcademia;
+    }
+
+    public boolean isOculta() {
+        return oculta;
+    }
+
+    public void setOculta(boolean oculta) {
+        this.oculta = oculta;
     }
 }
