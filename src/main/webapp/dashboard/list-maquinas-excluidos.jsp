@@ -4,20 +4,11 @@
 <%@ page import="br.mendonca.testemaven.services.MaquinaService" %>
 
 <%
-  if (session.getAttribute("user") != null) {
-    MaquinaService maquinaService = new MaquinaService();
-    int pagina = 0;
-    int tamanhoPagina = 3;
-
-    try {
-      if (request.getParameter("pagina") != null) {
-        pagina = Integer.parseInt(request.getParameter("pagina"));
-      }
-    } catch (NumberFormatException e) {
-      pagina = 0; // Valor padrão em caso de erro
-    }
-
-    List<MaquinaDTO> listaOcultos = maquinaService.listMaquinasExcluidosPaginados(pagina, tamanhoPagina);
+if (session.getAttribute("user") != null) {
+  MaquinaService maquinaService = new MaquinaService();
+  int pagina = request.getParameter("pagina") != null ? Integer.parseInt(request.getParameter("pagina")) : 0;
+  int tamanhoPagina = 3;
+  List<MaquinaDTO> maquinas = maquinaService.listMaquinasExcluidosPaginados(pagina, tamanhoPagina);
 %>
 
 <!doctype html>
@@ -63,7 +54,7 @@
           <div>
             <strong>Nome:</strong> <%= maquina.getNome() %> |
             <strong>Peso Total (kg):</strong> <%= maquina.getPesoTotal() %> |
-            <strong>Está Quebrada:</strong> <%= maquina.isquebrada() ? "Sim" : "Não" %>
+            <strong>Está Quebrada:</strong> <%= maquina.isQuebrada() ? "Sim" : "Não" %>
           </div>
         </li>
         <% } %> <!-- Fechamento do loop for -->
