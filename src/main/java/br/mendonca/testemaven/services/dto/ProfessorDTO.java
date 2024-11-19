@@ -6,16 +6,25 @@ import java.util.UUID;
 
 public class ProfessorDTO {
 
-    private UUID uuid;
+    private String uuid;
     private String name;
     private Integer idade;
     private boolean estaPresente;
+    private boolean estaAtivo;
 
-    public UUID getUuid() {
+    public boolean isEstaAtivo() {
+        return estaAtivo;
+    }
+
+    public void setEstaAtivo(boolean estaAtivo) {
+        this.estaAtivo = estaAtivo;
+    }
+
+    public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(UUID uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 
@@ -45,9 +54,11 @@ public class ProfessorDTO {
 
     public static ProfessorDTO professorMapper(Professor professor) {
         ProfessorDTO dto = new ProfessorDTO();
+        dto.setUuid(professor.getUuid());
         dto.setName(professor.getName());
         dto.setIdade(professor.getIdade());
         dto.setEstaPresente(professor.isEstaPresente());
+        dto.setEstaAtivo(professor.isEstaAtivo());
 
         return dto;
     }
