@@ -37,11 +37,22 @@ public class InstallService {
 				+ "    uuid UUID DEFAULT gen_random_uuid() PRIMARY KEY,"
 				+ "    name VARCHAR(255) NOT NULL,"
 				+ "    email VARCHAR(255) NOT NULL,"
-				+ "    password VARCHAR(255) NOT NULL)"
-		);
-
-
+				+ "    password VARCHAR(255) NOT NULL,"
+				+ "    idade INTEGER NOT NULL," // Novo campo
+				+ "    status BOOLEAN NOT NULL" // Novo campo
+				+ ")");
 	}
+	public void populate7UserTable() throws ClassNotFoundException, SQLException {
+		statement("INSERT INTO users (name, email, password, idade, status) VALUES ('João Silva', 'joao@example.com', 'senha123', 25, true)");
+		statement("INSERT INTO users (name, email, password, idade, status) VALUES ('Maria Oliveira', 'maria@example.com', 'senha456', 30, false)");
+		statement("INSERT INTO users (name, email, password, idade, status) VALUES ('Carlos Santos', 'carlos@example.com', 'senha789', 40, true)");
+		statement("INSERT INTO users (name, email, password, idade, status) VALUES ('Ana Souza', 'ana@example.com', 'senha321', 22, false)");
+		statement("INSERT INTO users (name, email, password, idade, status) VALUES ('Lucas Ferreira', 'lucas@example.com', 'senha654', 35, true)");
+		statement("INSERT INTO users (name, email, password, idade, status) VALUES ('Fernanda Lima', 'fernanda@example.com', 'senha987', 28, true)");
+		statement("INSERT INTO users (name, email, password, idade, status) VALUES ('Paulo Mendes', 'paulo@example.com', 'senha111', 45, false)");
+	}
+
+
 	public void deleteProfessorTable() throws ClassNotFoundException, SQLException {
 		statement("DROP TABLE IF EXISTS professor");
 	}
