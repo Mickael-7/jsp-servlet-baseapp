@@ -5,7 +5,7 @@ public class Maquina {
     private String nome;
     private float pesoTotal;
     private boolean quebrada;
-
+    private boolean oculta;
 
     public String getUuid() {
         return uuid;
@@ -37,5 +37,13 @@ public class Maquina {
 
     public void setQuebrada(boolean quebrada) {
         this.quebrada = quebrada;
+    }
+
+    public boolean isOculta() {
+        return oculta;
+    }
+
+    public void setOculta(boolean oculta) {
+        this.oculta = oculta;
     }
 }

@@ -36,7 +36,7 @@ if (session.getAttribute("user") != null) {
                     <li class="nav-item"><a class="nav-link" href="/dashboard/register-exercicio.jsp">Registrar Exercício</a></li>
                     <li class="nav-item"><a class="nav-link" href="/dashboard/list-exercicios-excluidos.jsp">Exercicios Excluidos</a></li>
                     <li class="nav-item"><a class="nav-link" href="/dashboard/list-maquinas.jsp">Máquinas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/dashboard/novamaquina.jsp">Criar Máquina</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/dashboard/list-maquinas-excluidos.jsp">Maquinas Excluídas</a></li>
                 </ul>
                 <span class="navbar-text">
                     <a class="btn btn-success" href="/auth/logoff">Logoff</a>

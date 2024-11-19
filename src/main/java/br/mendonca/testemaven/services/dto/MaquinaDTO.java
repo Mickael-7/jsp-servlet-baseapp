@@ -8,7 +8,7 @@ public class MaquinaDTO {
     private String nome;
     private float pesoTotal;
     private boolean quebrada;
-
+    private boolean oculta;
 
     public String getNome() {
         return nome;
@@ -38,12 +38,20 @@ public class MaquinaDTO {
         this.quebrada = quebrada;
     }
 
+    public boolean isOculta() {
+        return oculta;
+    }
+
+    public void setOculta(boolean oculta) {
+        this.oculta = oculta;
+    }
+
     public static MaquinaDTO maquinaMapper(Maquina maquina) {
         MaquinaDTO dto = new MaquinaDTO();
         dto.setNome(maquina.getNome());
         dto.setPesoTotal(maquina.getPesoTotal());
         dto.setQuebrada(maquina.isQuebrada());
-
+        dto.setOculta(maquina.isOculta());
         return dto;
     }
 }
