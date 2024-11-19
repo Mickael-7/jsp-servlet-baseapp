@@ -6,7 +6,25 @@ public class User {
 	private String name;
 	private String email;
 	private String password;
-	
+	private int idade;       // Novo campo: idade
+	private boolean status;
+
+	public int getIdade() {
+		return idade;
+	}
+
+	public void setIdade(int idade) {
+		this.idade = idade;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	public String getUuid() {
 		return uuid;
 	}
