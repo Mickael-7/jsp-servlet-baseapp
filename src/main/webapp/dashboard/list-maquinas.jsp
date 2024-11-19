@@ -46,7 +46,7 @@
             <li class="nav-item"><a class="nav-link" href="/dashboard/users.jsp">Users</a></li>
             <li class="nav-item"><a class="nav-link" href="/dashboard/about.jsp">About</a></li>
             <li class="nav-item"><a class="nav-link" href="/dashboard/list-maquinas.jsp">Máquinas</a></li>
-            <li class="nav-item"><a class="nav-link" href="/dashboard/list-maquinas-excluidas.jsp">Excluídas</a></li>
+            <li class="nav-item"><a class="nav-link" href="/dashboard/list-maquinas-excluidos.jsp">Excluídas</a></li>
           </ul>
           <span class="navbar-text">
             <a class="btn btn-success" href="/auth/logoff">Logoff</a>
