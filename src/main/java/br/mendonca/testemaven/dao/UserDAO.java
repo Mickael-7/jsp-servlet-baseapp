@@ -15,11 +15,13 @@ public class UserDAO {
 	public void register(User user) throws ClassNotFoundException, SQLException {
 		Connection conn = ConnectionPostgres.getConexao();
 		conn.setAutoCommit(true);
-		
-		PreparedStatement ps = conn.prepareStatement("INSERT INTO users (name, email, password) values (?,?,?)");
+
+		PreparedStatement ps = conn.prepareStatement("INSERT INTO users (name, email, password, idade, status) VALUES (?,?,?,?,?)");
 		ps.setString(1, user.getName());
 		ps.setString(2, user.getEmail());
 		ps.setString(3, user.getPassword());
+		ps.setInt(4, user.getIdade());
+		ps.setBoolean(5, user.isStatus());
 		ps.execute();
 		ps.close();
 	}
@@ -124,5 +126,57 @@ public class UserDAO {
 		ps.close();
 		return users;
 	}
+	public List<User> filterUsers(String name, Integer idadeMin, Integer idadeMax, Boolean status) throws ClassNotFoundException, SQLException {
+		List<User> users = new ArrayList<>();
+		Connection conn = ConnectionPostgres.getConexao();
+		conn.setAutoCommit(true);
+
+		StringBuilder sql = new StringBuilder("SELECT * FROM users WHERE 1=1");
+		if (name != null && !name.isEmpty()) {
+			sql.append(" AND LOWER(name) LIKE LOWER(?)");
+		}
+		if (idadeMin != null) {
+			sql.append(" AND idade >= ?");
+		}
+		if (idadeMax != null) {
+			sql.append(" AND idade <= ?");
+		}
+		if (status != null) {
+			sql.append(" AND status = ?");
+		}
+
+		PreparedStatement ps = conn.prepareStatement(sql.toString());
+		int parameterIndex = 1;
+
+		if (name != null && !name.isEmpty()) {
+			ps.setString(parameterIndex++, "%" + name + "%");
+		}
+		if (idadeMin != null) {
+			ps.setInt(parameterIndex++, idadeMin);
+		}
+		if (idadeMax != null) {
+			ps.setInt(parameterIndex++, idadeMax);
+		}
+		if (status != null) {
+			ps.setBoolean(parameterIndex++, status);
+		}
+
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			User user = new User();
+			user.setUuid(rs.getString("uuid"));
+			user.setName(rs.getString("name"));
+			user.setEmail(rs.getString("email"));
+			user.setIdade(rs.getInt("idade"));
+			user.setStatus(rs.getBoolean("status"));
+			users.add(user);
+		}
+
+		rs.close();
+		ps.close();
+		return users;
+	}
+
+
 
 }
