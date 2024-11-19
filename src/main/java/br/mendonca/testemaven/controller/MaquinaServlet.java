@@ -54,10 +54,13 @@ public class MaquinaServlet extends HttpServlet {
             String nome = request.getParameter("nome");
             float pesoTotal = Float.parseFloat(request.getParameter("pesoTotal"));
             boolean quebrada = request.getParameter("quebrada") != null;
+            boolean oculta = request.getParameter("oculta") != null
+                    ? Boolean.parseBoolean(request.getParameter("oculta"))
+                    : true;
+            ;
 
             MaquinaService service = new MaquinaService();
-            service.register(nome, pesoTotal, quebrada);
-
+            service.register(nome, pesoTotal, quebrada, oculta);
 
             page.println("<html lang='pt-br'><head><title>Salvo com Sucesso</title>");
             page.println("<script type='text/javascript'>");
