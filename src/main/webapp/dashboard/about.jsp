@@ -75,6 +75,7 @@ if (session.getAttribute("user") != null) {
                 	<td scope="col">Igor Emanuel Oliveira Rêgo</th>
                 	<td scope="col">Entidade Maquina</th>
                 	<td scope="col">uma maquina é criada com seu nome, quantidade de peso e indica se está quebrada ou não</th>
+					<td scope="col">task 4</th>
                 </tr>
 			<tbody>
 			</tbody>

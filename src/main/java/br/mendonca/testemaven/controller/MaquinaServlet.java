@@ -28,6 +28,7 @@ public class MaquinaServlet extends HttpServlet {
             page.println("Peso Total (kg): <input type='number' step='0.01' name='pesoTotal'><br>");
             page.println("Está Quebrada? <input type='checkbox' name='quebrada'><br>");
             page.println("<input type='submit' value='Criar Máquina'>");
+            page.println("  Ocultar Maquinas: <input type='checkbox' name='oculta'><br>");
             page.println("</form>");
             page.println("</body></html>");
             page.close();
