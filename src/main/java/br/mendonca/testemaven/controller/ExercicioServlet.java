@@ -22,10 +22,11 @@ public class ExercicioServlet extends HttpServlet {
 		try {
 			page.println("<html lang='pt-br'><head><title>Registrar Exercicio</title></head><body>");
 			page.println("<h1>Registrar Exercício</h1>");
-			page.println("<form method='post' action='/end/point'>");
+			page.println("<form method='post' action='/registerexercicio'>");
 			page.println("  Nome do Exercício: <input type='text' name='nome'><br>");
 			page.println("  Quantidade de Séries: <input type='number' name='quantidadeSeries'><br>");
 			page.println("  Disponível: <input type='checkbox' name='disponivel'><br>");
+			page.println("  Ocultar Exercício: <input type='checkbox' name='oculta'><br>");
 			page.println("  <input type='submit' value='Registrar Exercício'>");
 			page.println("</form>");
 			page.println("</body></html>");
@@ -52,9 +53,10 @@ public class ExercicioServlet extends HttpServlet {
 			String nome = request.getParameter("nome");
 			int quantidadeSeries = Integer.parseInt(request.getParameter("quantidadeSeries"));
 			boolean disponivel = request.getParameter("disponivel") != null;
+			boolean oculta = request.getParameter("oculta") != null ? Boolean.parseBoolean(request.getParameter("oculta")) : true;; // Novo campo
 
 			ExercicioService service = new ExercicioService();
-			service.register(nome, quantidadeSeries, disponivel);
+			service.register(nome, quantidadeSeries, disponivel, oculta);
 
 			response.sendRedirect("/dashboard/register-exercicio.jsp");
 
