@@ -3,7 +3,16 @@ package br.mendonca.testemaven.services.dto;
 import br.mendonca.testemaven.model.entities.User;
 
 public class UserDTO {
-	
+	private String uuid;
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
 	private String name;
 	private String email;
 	
