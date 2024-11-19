@@ -36,7 +36,7 @@
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link" href="/dashboard/dashboard.jsp">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="/dashboard/list-users.jsp">Users</a></li>
+            <li class="nav-item"><a class="nav-link" href="/dashboard/users.jsp">Users</a></li>
             <li class="nav-item"><a class="nav-link" href="/dashboard/about.jsp">About</a></li>
             <li class="nav-item"><a class="nav-link" href="/dashboard/register-exercicio.jsp">Registrar Exercicio</a></li>
             <li class="nav-item"><a class="nav-link" href="/dashboard/list-exercicios-excluidos.jsp">Exercicios Excluidos</a></li>

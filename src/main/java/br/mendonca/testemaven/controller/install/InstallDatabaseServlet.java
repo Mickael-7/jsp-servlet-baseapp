@@ -33,6 +33,12 @@ public class InstallDatabaseServlet extends HttpServlet {
 			service.createUserTable();
 			msg.append("<h2>Created table 'users' successfully!</h2>\n");
 
+			// Exclui e recria a tabela de seguidores
+			service.deleteSeguidorTable();
+			msg.append("<h2>Deleted table 'seguidores' successfully!</h2>\n");
+			service.createSeguidoresTable();
+			msg.append("<h2>Created table 'seguidores' successfully!</h2>\n");
+
 			// Exclui e recria a tabela de professores
 			service.deleteProfessorTable();
 			msg.append("<h2>Deleted table 'professor' successfully!</h2>\n");
@@ -56,6 +62,8 @@ public class InstallDatabaseServlet extends HttpServlet {
 			msg.append("<h2>Created table 'maquinas' successfully!</h2>\n");
 			service.populateMaquinaTable();
 			msg.append("<h2>Inserted 7 random machines successfully!</h2>\n");
+
+
 
 			// Exibe a página HTML com as mensagens
 			page.println("<html lang='pt-br'><head><title>Instalação do Banco de Dados</title></head><body>");
