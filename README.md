@@ -2,7 +2,7 @@
 App Academia
 
 link do deploy: https://jsp-servlet-baseapp-vx1l.onrender.com
-## Desenolvedores
+## Desenvolvedores
 
 - Nathan Dalbert Lopes os Santos: 
   #1 Atualizar o .gitignore, Escolher Líder, Criar Branch nathan,Atualizar o Readme;
